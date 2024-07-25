@@ -1,3 +1,5 @@
+//Liner Search compares the element to be searched with each element of the array one by one.
+//No of elements is equal to the no of steps required to solve the problem.
 #include <stdio.h>
 int main()
 {
