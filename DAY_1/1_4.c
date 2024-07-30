@@ -20,12 +20,14 @@ int main(){
     multiply(&c1, &c2);
     return 0;
 }
+
 void add(struct Complex c1, struct Complex c2){
     struct Complex sum;
     sum.real = c1.real + c2.real;
     sum.imag = c1.imag + c2.imag;
     printf("Sum of the two complex numbers: %.2f + %.2fi\n", sum.real, sum.imag);
 }
+
 void multiply(struct Complex *c1, struct Complex *c2){
     struct Complex product;
     product.real = c1->real * c2->real - c1->imag * c2->imag;
