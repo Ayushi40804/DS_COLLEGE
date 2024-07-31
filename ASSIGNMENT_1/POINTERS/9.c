@@ -1,4 +1,3 @@
-//Create a program that intentionally causes a memory leak by allocating memory and not freeing it. Then modify the program to fix the memory leak and explain the changes made.
 #include <stdio.h>
 #include <stdlib.h>
 void rotate(int *arr_AYUSHI, int n_AYUSHI, int k_AYUSHI);
@@ -23,4 +22,21 @@ int main()
     }
     free(arr_AYUSHI);
     return 0;
+}
+void rotate(int *arr_AYUSHI, int n_AYUSHI, int k_AYUSHI)
+{
+    int *temp_AYUSHI = (int *)malloc(k_AYUSHI * sizeof(int));
+    for (int i_AYUSHI = 0; i_AYUSHI < k_AYUSHI; i_AYUSHI++)
+    {
+        temp_AYUSHI[i_AYUSHI] = arr_AYUSHI[i_AYUSHI];
+    }
+    for (int i_AYUSHI = 0; i_AYUSHI < n_AYUSHI - k_AYUSHI; i_AYUSHI++)
+    {
+        arr_AYUSHI[i_AYUSHI] = arr_AYUSHI[i_AYUSHI + k_AYUSHI];
+    }
+    for (int i_AYUSHI = 0; i_AYUSHI < k_AYUSHI; i_AYUSHI++)
+    {
+        arr_AYUSHI[n_AYUSHI - k_AYUSHI + i_AYUSHI] = temp_AYUSHI[i_AYUSHI];
+    }
+    free(temp_AYUSHI);
 }

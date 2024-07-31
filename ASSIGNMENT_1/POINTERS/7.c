@@ -1,4 +1,3 @@
-//Write a function that accepts a pointer to an integer array and its size, then uses pointer arithmetic to reverse the array in place.
 #include <stdio.h>
 #include <stdlib.h>
 void reverse(int *arr_AYUSHI, int n_AYUSHI);

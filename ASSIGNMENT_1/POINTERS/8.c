@@ -1,4 +1,3 @@
-//Implement a function to create a dynamic 2D array (matrix) using pointers. Provide functions to fill the matrix with values, print the matrix, and free the allocated memory.
 #include <stdio.h>
 #include <stdlib.h>
 int **createMatrix(int rows_AYUSHI, int cols_AYUSHI);

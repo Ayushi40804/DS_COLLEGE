@@ -1,0 +1,15 @@
+QUESTIONS
+Strings
+1. Write a function to find the longest substring of a given string that contains all unique characters. For example, the longest substring without repeating characters for the string "abcabcbb" is "abc", with the length of 3.
+2. Implement a function that checks if two given strings are anagrams of each other. Ignore spaces and capitalization. For example, "Listen" and "Silent" are anagrams.
+3. Write a function to perform basic string compression using the counts of repeated characters. For example, the string "aabcccccaaa" would become "a2b1c5a3". If the "compressed" string would not become smaller than the original string, your function should return the original string.
+
+Arrays
+1. Implement a function to rotate an array of integers by 'k' positions to the right. For example, if the array is [1, 2, 3, 4, 5, 6, 7] and k is 3, the array should be modified to [5, 6, 7, 1, 2, 3, 4].
+2. Write a function to find the subarray with the given sum in an array of integers. For example, in the array [1, 4, 20, 3, 10, 5], the subarray [4, 20, 3] has the sum 27.
+3. Given two sorted arrays, write a function to merge them into a single sorted array without using any extra space (merge in-place).
+
+Pointers
+1. Write a function that accepts a pointer to an integer array and its size, then uses pointer arithmetic to reverse the array in place.
+2. Implement a function to create a dynamic 2D array (matrix) using pointers. Provide functions to fill the matrix with values, print the matrix, and free the allocated memory.
+3. Create a program that intentionally causes a memory leak by allocating memory and not freeing it. Then modify the program to fix the memory leak and explain the changes made.

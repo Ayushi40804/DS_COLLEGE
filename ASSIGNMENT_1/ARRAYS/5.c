@@ -1,38 +1,39 @@
-//Write a function to find the subarray with the given sum in an array of integers. For example, in the array [1, 4, 20, 3, 10, 5], the subarray [4, 20, 3] has the sum 27.
 #include <stdio.h>
-void subarraySum(int arr[], int n, int sum)
-{
-    int curr_sum = arr[0], start = 0, i;
-    for (i = 1; i <= n; i++)
-    {
-        while (curr_sum > sum && start < i - 1)
-        {
-            curr_sum = curr_sum - arr[start];
-            start++;
-        }
-        if (curr_sum == sum)
-        {
-            printf("Sum found between indexes %d and %d\n", start, i - 1);
-            return;
-        }
-        if (i < n)
-            curr_sum = curr_sum + arr[i];
-    }
-    printf("No subarray found\n");
-}
+void subarraySum(int arr[], int n_AYUSHI, int sum_AYUSHI);
 int main()
 {
-    int n, sum;
+    int n_AYUSHI, sum_AYUSHI;
     printf("Enter the number of elements in the array: ");
-    scanf("%d", &n);
-    int arr[n];
+    scanf("%d", &n_AYUSHI);
+    int arr[n_AYUSHI];
     printf("Enter the elements of the array: ");
-    for (int i = 0; i < n; i++)
+    for (int i_AYUSHI = 0; i_AYUSHI < n_AYUSHI; i_AYUSHI++)
     {
-        scanf("%d", &arr[i]);
+        scanf("%d", &arr[i_AYUSHI]);
     }
     printf("Enter the sum to find: ");
-    scanf("%d", &sum);
-    subarraySum(arr, n, sum);
+    scanf("%d", &sum_AYUSHI);
+    subarraySum(arr, n_AYUSHI, sum_AYUSHI);
     return 0;
+}
+
+void subarraySum(int arr[], int n_AYUSHI, int sum_AYUSHI)
+{
+    int curr_sum_AYUSHI = arr[0], first_AYUSHI = 0, i_AYUSHI;
+    for (i_AYUSHI = 1; i_AYUSHI <= n_AYUSHI; i_AYUSHI++)
+    {
+        while (curr_sum_AYUSHI > sum_AYUSHI && first_AYUSHI < i_AYUSHI - 1)
+        {
+            curr_sum_AYUSHI = curr_sum_AYUSHI - arr[first_AYUSHI];
+            first_AYUSHI++;
+        }
+        if (curr_sum_AYUSHI == sum_AYUSHI)
+        {
+            printf("Sum found between indexes %d and %d\n", first_AYUSHI, i_AYUSHI - 1);
+            return;
+        }
+        if (i_AYUSHI < n_AYUSHI)
+            curr_sum_AYUSHI = curr_sum_AYUSHI + arr[i_AYUSHI];
+    }
+    printf("No subarray found\n");
 }
