@@ -1,4 +1,4 @@
-QUESTIONS
+QUESTIONS (DATE : 31/07/2024)
 Strings
 1. Write a function to find the longest substring of a given string that contains all unique characters. For example, the longest substring without repeating characters for the string "abcabcbb" is "abc", with the length of 3.
 2. Implement a function that checks if two given strings are anagrams of each other. Ignore spaces and capitalization. For example, "Listen" and "Silent" are anagrams.
