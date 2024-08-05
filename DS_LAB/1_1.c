@@ -1,4 +1,3 @@
-//Write a program to read two numbers and compare the numbers using function call by address.
 #include <stdio.h>
 void Compare(int *x, int *y);
 int main(){
