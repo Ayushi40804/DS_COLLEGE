@@ -1,3 +1,4 @@
+//Read ten complex numers and display them using array of complex structure. 
 #include <stdio.h>
 typedef struct complex_struct
 {

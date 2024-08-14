@@ -1,94 +1,87 @@
+//create a menu driven program on array operations like insert, delete, search, traversal. the insert function should reallocate the memory while inserting the element
 #include <stdio.h>
 #include <stdlib.h>
 
-void insert( int arr[], int n_arr , int k_element , int k_position);
-void delete( int arr[], int n_arr , int k_position);
-void search(int arr[], int n_arr, int k_search);
-void traversal(int arr[], int n_arr);
-
+void insert(int *arr, int *size, int element, int position);
+void delete(int *arr, int *size, int position);
+void search(int *arr, int *size, int element);
+void traverse(int *arr, int *size);
+//include to read array in main function too
 int main(){
-    int n_arr , k_element , k_position, i,x;
+    int size;
+    printf("Enter the initial size of the array: ");
+    scanf("%d", &size);
 
-    printf("Enter the size of the array: ");
-    scanf("%d", &n_arr);
-    int *arr= (int *)malloc(n_arr*sizeof(int));
-    printf("Enter the elements of Array: ");
-    for ( i=0; i<n_arr; i++){
+    int *arr = (int *)malloc(size*sizeof(int));
+
+    printf("Enter the elements of the array: ");
+    for (int i = 0; i < size; i++) {
         scanf("%d", &arr[i]);
     }
-    while (x!=5){
-    printf("\nMENU\n");
-    printf("1. Insert\n");
-    printf("2. Delete\n");
-    printf("3. Linear Search\n");
-    printf("4. Traverse\n");
-    printf("5. Exit\n" );
-
-    printf("Enter option:");
-    scanf("%d",&x);
-
-    if (x==1){
-        printf("Element to insert: ");
-        scanf("%d",&k_element);
-        printf("Enter Position: ");
-        scanf("%d",&k_position);
-        insert ( arr , n_arr , k_element , k_position );
-    }
-    if (x==2){
-        printf("Enter Position: ");
-        scanf("%d",&k_position);
-        delete ( arr , n_arr , k_position);
-    }
-    if (x==3){
-        printf("Enter element to Search: ");
-        scanf("%d", &k_element);
-        search( arr , n_arr , k_element);
-    }
-    if (x==4){
-        traversal(arr , n_arr);
-    }
-    if (x==5){
-        free(arr);
-        return 0;
-    }
-}
-}
-
-void insert( int arr[] , int n_arr , int k_element , int k_position){
-    int i ;
-    for (i=n_arr ; i >k_position - 1 ; i--){
-        arr[i] = arr[i-1];
-    }
-    arr[k_position - 1] = k_element ;
-    for (i=0 ; i<=n_arr ; i++){
-        printf("%d ", arr[i]);
-    }
-}
-void delete( int arr[] , int n_arr , int k_position){
-    int i;
-    for ( i=k_position -1 ; i<n_arr; i++){
-        arr[i]=arr[i+1];
-    }
-    for (i=0 ; i<n_arr- 1 ; i++){
-        printf("%d ", arr[i]);
-    }
-
-}
-void search(int arr[] , int n_arr , int k_search){
-    int i;
-    for (i=0 ; i<n_arr ; i++){
-        if (k_search==arr[i]){
-            printf("Position : %d",i+1);
-            return ;
+    
+    int choice, element, position;
+    while(1){
+        printf("Enter your choice: \n1. Insert\n2. Delete\n3. Search\n4. Traverse\n5. Exit\n");
+        scanf("%d", &choice);
+        switch(choice){
+            case 1:
+                printf("Enter the element to insert: ");
+                scanf("%d", &element);
+                printf("Enter the position to insert: ");
+                scanf("%d", &position);
+                insert(arr, &size, element, position);
+                break;
+            case 2:
+                printf("Enter the position to delete: ");
+                scanf("%d", &position);
+                delete(arr, &size, position);
+                break;
+            case 3:
+                printf("Enter the element to search: ");
+                scanf("%d", &element);
+                search(arr, &size, element);
+                break;
+            case 4:
+                traverse(arr, &size);
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Invalid choice\n");
         }
     }
-
 }
-void traversal(int arr[], int n_arr){
-    int i;
-    printf("Array Elements: ");
-    for (i=0; i<n_arr ; i++){
-        printf("%d  ",arr[i]);
-    }
 
+void insert(int *arr, int *size, int element, int position){
+    *size += 1;
+    arr = (int *)realloc(arr, *size*sizeof(int));
+    for (int i = *size-1; i > position; i--) {
+        arr[i] = arr[i-1];
+    }
+    arr[position] = element;
+}
+
+void delete(int *arr, int *size, int position){
+    for (int i = position; i < *size-1; i++) {
+        arr[i] = arr[i+1];
+    }
+    *size -= 1;
+    arr = (int *)realloc(arr, *size*sizeof(int));
+}
+
+void search(int *arr, int *size, int element){
+    for (int i = 0; i < *size; i++) {
+        if (arr[i] == element) {
+            printf("Element found at position %d\n", i);
+            return;
+        }
+    }
+    printf("Element not found\n");
+}
+
+void traverse(int *arr, int *size){
+    for (int i = 0; i < *size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
