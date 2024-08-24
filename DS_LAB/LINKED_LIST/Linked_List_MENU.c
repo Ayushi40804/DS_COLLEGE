@@ -13,8 +13,8 @@ struct node * insert_at_begning(struct node *head);
 struct node * insert_at_end(struct node *head);
 void insert(struct node *);
 struct node * delete_at_begning(struct node *);
-struct node * delete_at_end(struct node*);
-void delete(struct node *head);
+void delete_at_end(struct node*);
+struct node * delete(struct node *head);
 void traverse(struct node *head);
 struct node * reverse(struct node * head);
 
@@ -58,15 +58,15 @@ int main(){
             insert(head);
             break;
         case 5:
-            printf("----DELETING AN ELEMENT AT THE BEGNING----");
+            printf("----DELETING AN ELEMENT AT THE BEGNING----\n");
             head=delete_at_begning(head);
             break;
         case 6:
-            printf("----DELETING AN ELEMENT AT THE END----");
+            printf("----DELETING AN ELEMENT AT THE END----\n");
             delete_at_end(head);
             break;
         case 7:
-            printf("----DELETING AN ELEMENT----");
+            printf("----DELETING AN ELEMENT----\n");
             delete(head);
             break;
         case 8:
@@ -74,7 +74,7 @@ int main(){
             traverse(head);
             break;
         case 9:
-            printf("----REVERSE THE LINKED LIST----");
+            printf("----REVERSE THE LINKED LIST----\n");
             head=reverse(head);
             break;
         case 10:
@@ -130,6 +130,7 @@ struct node * insert_at_end(struct node *head){
     }
     ptr->link=temp;
 }
+
 struct node * insert_at_begning(struct node *head){
     struct node *temp=(struct node *)malloc(sizeof (struct node));
     struct node *ptr=head;
@@ -158,13 +159,64 @@ void insert(struct node *head){
 }
 
 struct node * delete_at_begning(struct node *head){
-    struct node *ptr=NULL;
-    ptr=head;
-    head=ptr->link;
+    if (head==NULL){
+        printf("Kist is already Empty!");
+    }
+    else{
+        struct node *ptr=NULL;
+        ptr=head;
+        head=ptr->link;
+        free(ptr);
+        ptr=NULL;
+    }
     return head;
 }
-struct node * delete_at_end(struct node*head){
-    
+
+void delete_at_end(struct node*head){
+    if (head==NULL){
+        printf("List is already empty!");
+    }
+    else if (head->link==NULL){
+        free(head);
+        head=NULL;
+    }
+    else{
+        struct node * ptr=head;
+        while(ptr->link->link!=NULL){
+            ptr=ptr->link;
+        }
+        ptr->link=NULL;
+        free(ptr->link);
+        ptr=NULL;
+    }
 }
-struct node * delete(struct node *head){}
-struct node * reverse(struct node *head){}
+
+struct node * delete(struct node *head){
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return NULL;
+    }
+    if (head->link == NULL) {
+        free(head);
+        return NULL;
+    }
+    struct node *ptr = head;
+    while (ptr->link->link != NULL) {
+        ptr = ptr->link;
+    }
+    free(ptr->link);
+    ptr->link = NULL;
+    return head;
+}
+
+struct node * reverse(struct node *head){
+    struct node * ptr;
+    ptr=head;
+    if (head==NULL || head->link==NULL){
+        return head;
+    }
+    ptr=reverse(head->link);
+    head ->link->link=head;
+    head->link = NULL;
+    return ptr;
+}

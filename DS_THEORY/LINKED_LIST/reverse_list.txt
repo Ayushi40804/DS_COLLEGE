@@ -1,0 +1,46 @@
+#include<stdio.h>
+int stk[10];
+int top=-1;
+int pop();
+void push(int);
+void main()
+{
+ int val,n,i,a[10];
+ clrscr();
+ printf("\n Enter the array size");
+   scanf("%d",&n);
+
+ printf("\n Enter the elements array");
+ for(i=0;i<n;i++)
+   scanf("%d",&a[i]);
+ 
+ for(i=0;i<n;i++)
+   push(a[i]);
+
+ for(i=0;i<n;i++)
+  {
+    val=pop();
+    a[i]=val;
+  }
+
+ printf("\n The reverse array is");
+ for(i=0;i<n;i++)
+    printf("\n%d",a[i]);
+}
+
+
+void push(int val)
+{
+ stk[++top]=val;
+}
+
+int pop()
+{
+  return(stk[top--]);
+}
+
+
+
+
+
+

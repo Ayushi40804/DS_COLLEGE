@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 #include<malloc.h>
 
@@ -10,8 +11,45 @@ struct node
 struct node *start=NULL;
 struct node * create_ll(struct node *);
 struct node * display(struct node *);
-int main()
+
+void main()
 {
+ int option;
+
+ do
+ {
+        printf("\n****MAIN MENU****");
+        printf("\n 1. create link list");
+        printf("\n 2. Display link list");
+        printf("\n 3. Exit");
+        printf("\n Enter your option");
+        scanf("%d",&option);
+
+        switch(option)
+        {
+
+           case 1:
+  
+               start=create_ll(start);
+               printf("\n link list created");
+               break;
+
+
+           case 2:
+        
+               start=display(start);
+           
+               break;
+
+        }
+    
+    }while(option !=3);
+
+}
+
+struct node * create_ll(struct node *start)
+{
+
   struct node *new_node,*ptr;
   int num;
   printf("\n Enter -1 to end");
@@ -43,8 +81,7 @@ int main()
     printf("\n Enter the data :");
     scanf("%d",&num);
    }
-   display(start);
-   return 0;
+ return start;
 }
 
 struct node * display(struct node *start)
