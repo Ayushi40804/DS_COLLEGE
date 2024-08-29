@@ -17,7 +17,7 @@ void traverse(struct node *head);
 int main(){
     struct node * head1, *head2, *result_head;
     int choice;
-    while (choice!=5){
+    while (choice !=6){
         printf("--Polynomial Menu--\n");
         printf("1. Enter Polynomial for Operations\n");
         printf("2. Add Two Polynomials\n");
@@ -81,17 +81,138 @@ int main(){
 }
 
 struct node * Create_ll(){
-    struct node * ptr, *current,*head=NULL;
+    struct node *ptr, *current,*head;
+    head=NULL;
     int deg;
     printf("Enter the Degree of the Polynomial: ");
     scanf("%d",&deg);
-    for(int i=head->expo;i>0;i--){
+    for(int i=0;i<=deg;i++){
         current=(struct node *)malloc(sizeof (struct node));
-        printf("Enter the coefficient of x^%d",i);
-        scanf("%d",&current->coe);
-        current->expo=i;
+        printf("Enter the coefficient of x^%d ", i);
+        scanf("%d", &current->coe);
+        current->expo = i;
         current->link=NULL;
-        if (head==NULL){
+        if (head == NULL){
+            head = current;
+        }
+        else{
+            ptr->link = current;
+        }
+        ptr=current;
+    }
+    return head;
+}
+
+struct node * add_Poly(struct node * head1, struct node * head2){
+    struct node * ptr1,*ptr2,*current, *head=NULL;
+    ptr1=head1;
+    ptr2=head2;
+    while(ptr1!=NULL &&ptr2!=NULL){
+        current=(struct node *)malloc(sizeof (struct node));
+        if (ptr1->expo == ptr2->expo){
+            current->coe= ptr1-> coe +ptr2-> coe;
+            current-> expo = ptr1->expo;
+            ptr1= ptr1-> link;
+            ptr2=ptr2->link;
+        }
+        else if (ptr1->expo > ptr2->expo){
+            current->coe =ptr1->coe;
+            current->expo = ptr1->expo;
+            ptr1 = ptr1-> link;
+        }
+        else{
+            current->coe = ptr2->coe;
+            current->expo = ptr2->expo;
+            ptr2= ptr2->link;
+        }
+        current->link=NULL;
+        if (head == NULL){
+            head = current;
+        }
+        else{
+            ptr1->link = current;
+        }
+        ptr1 = current;
+    }
+    while(ptr1 != NULL){
+        current = (struct node *)malloc(sizeof (struct node));
+        current-> coe = ptr1->coe;
+        current->expo = ptr1->expo;
+        current->link = NULL;
+        if (head == NULL){
+            head=current;
+        }
+        else{
+            ptr1->link = current;
+        }
+        ptr1=current;
+    }
+    while(ptr2!=NULL){
+        current=(struct node *)malloc(sizeof (struct node));
+        current->coe = ptr2->coe;
+        current->expo = ptr2->expo;
+        current->link = NULL;
+        if (head ==NULL){
+            head=current;
+        }
+        else{
+            ptr2->link = current;
+        }
+        ptr2=current;
+    }
+    return head;
+}
+
+struct node * multiply_Poly(struct node * head1, struct node * head2){
+    struct node * ptr1, *ptr2, *current, *head, *temp, *ptr;
+    head=NULL;
+    ptr1=head1;
+    while(ptr1 != NULL){
+        ptr2 =head2;
+        while(ptr2 != NULL){
+            current = (struct node *)malloc(sizeof (struct node));
+            current->coe=ptr1->coe * ptr2->coe;
+            current->expo=ptr1->expo + ptr2->expo;
+            current->link=NULL;
+            if (head==NULL){
+                head=current;
+            }
+            else{
+                ptr->link=current;
+            }
+            ptr=current;
+            ptr2=ptr2->link;
+        }
+        ptr1=ptr1->link;
+    }
+    return head;
+}
+
+struct node * subtract_Poly (struct node * head1, struct node * head2){
+    struct node * ptr1, *ptr2, *current, *head, *ptr;
+    head=NULL;
+    ptr1=head1;
+    ptr2=head2;
+    while(ptr1!=NULL && ptr2!=NULL){
+        current=(struct node *)malloc(sizeof (struct node));
+        if (ptr1->expo == ptr2->expo){
+            current->coe=ptr1->coe - ptr2->coe;
+            current->expo =ptr1->expo;
+            ptr1 =ptr1->link;
+            ptr2= ptr2->link;
+        }
+        else if (ptr1->expo > ptr2->expo){
+            current->coe=ptr1->coe;
+            current->expo= ptr1->expo;
+            ptr1=ptr1->link;
+        }
+        else{
+            current->coe=ptr2->coe;
+            current->expo =ptr2->expo;
+            ptr2=ptr2->link;
+        }
+        current->link=NULL;
+        if (head == NULL){
             head=current;
         }
         else{
@@ -99,22 +220,45 @@ struct node * Create_ll(){
         }
         ptr=current;
     }
+    while(ptr1!=NULL){
+        current=(struct node *)malloc(sizeof (struct node));
+        current->coe=ptr1->coe;
+        current->expo=ptr1->expo;
+        current->link=NULL;
+        if (head == NULL){
+            head =current;
+        }
+        else{
+            ptr->link=current;
+        }
+        ptr=current;
+        ptr1=ptr1->link;
+    }
+    while(ptr2 != NULL){
+        current=(struct node *)malloc(sizeof (struct node));
+        current->coe=ptr2->coe;
+        current->expo=ptr2->expo;
+        current->link=NULL;
+        if (head == NULL){
+            head=current;
+        }
+        else{
+            ptr->link=current;
+        }
+        ptr=current;
+        ptr2=ptr2->link;
+    }
     return head;
 }
-
-struct node * add_Poly(struct node * head1, struct node * head2){}
-
-struct node * multiply_Poly(struct node * head1, struct node * head2){}
-
-struct node * subtract_Poly (struct node * head1, struct node * head2){}
 void traverse(struct node *head){
     struct node *ptr;
     ptr=head;
-    for(ptr=head;ptr!=NULL;ptr=ptr->link){
-        printf("%d X^%d",ptr->coe,ptr->expo);
+    while(ptr!=NULL){
+        printf("%dX^%d",ptr->coe,ptr->expo);
         if (ptr->link!=NULL){
-            printf("+ ");
+            printf(" + ");
         }
+        ptr=ptr->link;
     }
     printf("\n");
 }
