@@ -1,3 +1,4 @@
+//Binary Search
 #include <stdio.h>
 void array(int n);
 void binary_search(int arr[], int n);
