@@ -1,4 +1,3 @@
-//The output of the program is
 #include <stdio.h>
 #include <string.h>
 int main()
